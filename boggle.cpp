@@ -1,3 +1,5 @@
+//boggle.cpp
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -93,5 +95,57 @@ bool boggleHelper(const std::set<std::string>& dict, const std::set<std::string>
 								   std::string word, std::set<std::string>& result, unsigned int r, unsigned int c, int dr, int dc)
 {
 //add your solution here!
-
+  
+  //given the space, do a backtracking recursive search 
+  
+  /*
+   if (prefix[word] is not found)
+   
+{
+  if(dict contains word)
+  {
+    add word to result
+    return true;
+  }
+  return false;
 }
+if(recursion to next letter == true)
+{
+  return true;
+}
+else if(dict contains word)
+{
+  add word to result
+  return true
+}
+return false
+   
+   * */
+  
+  if(prefix.count(word) == 0 || r >= board.size() || c >= board.size())
+  {
+    if (dict.count(word) > 0)
+    {
+      result.insert(word);
+      return true;
+    }
+    return false;
+    
+  }
+  
+  //
+  if (boggleHelper(dict, prefix, board, word+board[r][c], result, r+dr, c+dc, dr, dc) == true)
+  {
+    return true;
+  }
+  else if (dict.count(word) > 0)
+  {
+     result.insert(word);
+      return true;
+  }
+  
+  return false;
+ 
+}
+
+
